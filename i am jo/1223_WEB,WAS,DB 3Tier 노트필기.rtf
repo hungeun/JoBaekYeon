@@ -1,0 +1,182 @@
+{\rtf1\ansi\ansicpg949\deff0\nouicompat\deflang1033\deflangfe1042{\fonttbl{\f0\fnil\fcharset129 \'b8\'bc\'c0\'ba \'b0\'ed\'b5\'f1;}}
+{\colortbl ;\red255\green0\blue0;\red0\green77\blue187;\red0\green0\blue255;}
+{\*\generator Riched20 10.0.19041}\viewkind4\uc1 
+\pard\sl240\slmult1\f0\fs24\lang18 Web/WAS/DB 3Tier 2\lang1042\'c0\'cf\'c2\'f7\par
+\par
+\'be\'ee\'c1\'a6 \'bd\'c7\'bd\'c0\'c0\'c7 \'bc\'d3\'b5\'b5\'b0\'a1 \'c0\'fb\'b4\'e7\'c7\'df\'b4\'c2\'c1\'f6\'bf\'e4?\par
+1) \'b4\'c0\'b8\'ae\'b4\'d9\par
+2) \'c0\'fb\'b4\'e7\'c7\'cf\'b4\'d9\par
+3) \'ba\'fc\'b8\'a3\'b4\'d9\par
+\par
+* \'bf\'c0\'b4\'c3\'c0\'c7 \'bd\'c7\'bd\'c0 \'b9\'e6\'b9\'fd\par
+- Ubuntu \'b8\'ae\'b4\'aa\'bd\'ba\'bf\'a1 Apache, MySQL, PHP \'b5\'ee\'c0\'bb \'bc\'b3\'c4\'a1 (LAMP) + Gnuboard/\'c1\'f7\'c1\'a2\'c0\'db\'bc\'ba/Wordpress \'b5\'ee\par
+\par
+Quiz) Ubuntu\'c0\'c7 \'c0\'c7\'b9\'cc\'b4\'c2?\par
+- \'c0\'c7\'b9\'cc : \'b4\'e7\'bd\'c5\'c0\'cc \'c0\'d6\'be\'ee\'bc\'ad \'b3\'bb\'b0\'a1 \'c0\'d6\'bd\'c0\'b4\'cf\'b4\'d9. (\'be\'c6\'c7\'c1\'b8\'ae\'c4\'ab \'be\'f0\'be\'ee)  ----> (\'c0\'c7\'bf\'aa)  "\'b4\'f6\'ba\'d0\'c0\'d4\'b4\'cf\'b4\'d9."\par
+\par
+* Debian \'b0\'e8\'bf\'ad\'c0\'c7 \'c0\'da\'b5\'bf\'bc\'b3\'c4\'a1\par
+  apt-get : old\par
+  apt : new\par
+\par
+sudo : \'b8\'ed\'b7\'c9\'be\'ee \'be\'d5\'bf\'a1 \'ba\'d9\'c0\'cc\'b8\'e9, root\'c0\'c7 \'b1\'c7\'c7\'d1\'c0\'bb \'bb\'e7\'bf\'eb\'c7\'d8\'bc\'ad \'b8\'ed\'b7\'c9\'c0\'bb \'bd\'c7\'c7\'e0\'c7\'cf\'b0\'d4 \'b5\'ca\par
+su  : switch user (\'b4\'d9\'b8\'a5 \'bb\'e7\'bf\'eb\'c0\'da\'c0\'c7 \'b1\'c7\'c7\'d1\'c0\'bb \'bb\'e7\'bf\'eb)\par
+\par
+* \'c6\'ae\'b7\'af\'ba\'ed\'bd\'b4\'c6\'c3(\'c7\'d8\'b0\'e1\'b9\'e6\'b9\'fd)\par
+ sudo  apt  update\'bf\'a1\'bc\'ad \'bf\'a1\'b7\'af(Cache Lock) \'b9\'df\'bb\'fd\'bd\'c3, Ubuntu\'b8\'a6 \'c0\'e7\'bd\'c3\'c0\'db\'c7\'cf\'b8\'e9 \'c0\'df \'b5\'cb\'b4\'cf\'b4\'d9.\par
+\par
+$vi  test.txt\par
+:set nu                 // \'bf\'de\'c2\'ca\'bf\'a1 \'b3\'eb\'b6\'f5\'bb\'f6\'c0\'b8\'b7\'ce \'b6\'f3\'c0\'ce \'b9\'f8\'c8\'a3\'b8\'a6 \'c7\'a5\'bd\'c3\'c7\'cf\'b0\'d4 \'b5\'cb\'b4\'cf\'b4\'d9.\par
+  \'c5\'b0\'ba\'b8\'b5\'e5\'c0\'c7 i\'b8\'a6 \'b4\'a9\'b8\'a3\'b8\'e9 \'b8\'c7 \'be\'c6\'b7\'a7\'c1\'d9\'bf\'a1 --\'b3\'a2\'bf\'f6\'b3\'d6\'b1\'e2-- \'b6\'c7\'b4\'c2 --insert--\'b7\'ce \'b9\'d9\'b2\'f1  ----> \'c6\'ed\'c1\'fd\'b8\'f0\'b5\'e5\'b7\'ce \'b9\'d9\'b2\'f1\par
+  Merry Christmas!\par
+  \'c5\'b0\'ba\'b8\'b5\'e5\'c0\'c7 ESC\'c5\'b0\'b8\'a6 \'b4\'a9\'b8\'a3\'b8\'e9 \'c6\'ed\'c1\'fd\'b8\'f0\'b5\'e5 \'c1\'be\'b7\'e1\'b5\'c7\'b0\'ed, \'b8\'ed\'b7\'c9\'b8\'f0\'b5\'e5\'b7\'ce \'b9\'d9\'b2\'f1\par
+ :wq                     // \'c0\'fa\'c0\'e5 \'c8\'c4 \'c1\'be\'b7\'e1\par
+\par
+$ cat  /etc/passwd\par
+root:\cf1 x\cf0 :~~~~~       \par
+.......\par
+blackpink:\cf1 x\cf0 :~~~~\par
+twice:\cf1 x\cf0 :~~~~\par
+\lang18 ----->x\lang1042\'b4\'c2 \'bf\'f8\'b7\'a1 \'c6\'d0\'bd\'ba\'bf\'f6\'b5\'e5\'b8\'a6 \'c0\'fa\'c0\'e5\'c7\'d8\'b3\'f5\'b4\'c2 \'c0\'a7\'c4\'a1\'bf\'b4\'c0\'bd ----> \'c6\'d0\'bd\'ba\'bf\'f6\'b5\'e5\'b0\'a1 \'b1\'d7\'b4\'eb\'b7\'ce \'b3\'eb\'c3\'e2\'b5\'c7\'b4\'c2 \'c0\'a7\'c7\'e8\'c0\'cc \'c1\'b8\'c0\'e7!!!\par
+-----> \'c6\'d0\'bd\'ba\'bf\'f6\'b5\'e5 \'b3\'d6\'b4\'c2 \'ba\'ce\'ba\'d0\'c0\'bb x\'b7\'ce \'c7\'a5\'bd\'c3\'c7\'cf\'b0\'ed \'c6\'d0\'bd\'ba\'bf\'f6\'b5\'e5\'b4\'c2 \'b4\'d9\'b8\'a5 \'c6\'c4\'c0\'cf\'bf\'a1 \'c0\'fa\'c0\'e5\'c7\'cf\'b0\'d4\'b5\'ca\par
+\par
+$ cat  /etc/shadow                        // \'c0\'d0\'c0\'bb \'bc\'f6 \'be\'f8\'c0\'bd\par
+$ sudo  cat  /etc/shadow                // \'c0\'d0\'c0\'bb \'bc\'f6 \'c0\'d6\'c0\'bd\par
+\par
+\lang18 * \lang1042\'c0\'cf\'ba\'ce IoT\'c0\'e5\'c4\'a1\'b5\'e9\'c0\'c7 \'b0\'e6\'bf\'ec, passwd\'c0\'c7 x\'ba\'ce\'ba\'d0\'bf\'a1 \'c6\'d0\'bd\'ba\'bf\'f6\'b5\'e5\'b8\'a6 \'c0\'fa\'c0\'e5\'c7\'cf\'b1\'e2\'b5\'b5 \'c7\'d4 -----> \'c0\'a7\'c7\'e8!!\par
+\par
+\lang18 * Owner : \lang1042\'c6\'c4\'c0\'cf\'c0\'cc\'b3\'aa \'b5\'f0\'b7\'ba\'c5\'e4\'b8\'ae\'b8\'a6 \'b8\'b8\'b5\'e7 \'bb\'e7\'bf\'eb\'c0\'da(User), \'bc\'d2\'c0\'af\'b1\'c7\'c0\'bb \'b9\'de\'c0\'ba \'bb\'e7\'bf\'eb\'c0\'da(User)\par
+\par
+\lang18 $ ls -l   /var/log/auth.log                               // \lang1042\'b7\'ce\'b1\'d7\'c0\'ce, \'c0\'db\'be\'f7 \'b5\'ee\'c0\'bb \'b1\'e2\'b7\'cf\'c7\'d1 \'b7\'ce\'b1\'d7---> \'be\'c6\'b9\'ab\'b3\'aa \'ba\'b8\'b8\'e9 \'be\'c8\'b5\'ca\lang18\par
+-rw-r--\cf2 ---\cf0        \lang1042\'bc\'fd\'c0\'da\'b7\'ce \'c7\'a5\'bd\'c3\'c7\'cf\'b8\'e9?  640     ----->  other\'b4\'c2 \'c0\'d0\'c0\'bb \'bc\'f6\'b5\'b5, \'be\'b5\'bc\'f6\'b5\'b5 \'be\'f8\'b0\'ed, \'bd\'c7\'c7\'e0\'c7\'d2 \'bc\'f6\'b5\'b5 \'be\'f8\'c0\'bd\par
+\lang18\par
+$ ls  -l   /home\par
+\par
+* \lang1042\'bf\'ec\'ba\'d0\'c5\'f5 \'c0\'cc\'b9\'cc\'c1\'f6\'b8\'a6 \'b9\'e9\'be\'f7\'c7\'cf\'b1\'e2\par
+- \'c0\'cf\'b4\'dc \'c1\'f6\'b1\'dd \'c4\'d1\'c1\'ae \'c0\'d6\'b4\'c2 \'bf\'ec\'ba\'d0\'c5\'f5\'c0\'c7 \'c0\'fc\'bf\'f8\'c0\'bb \'b2\'fc\'b4\'cf\'b4\'d9.\par
+$ sudo  poweroff\par
+\lang18 $ sudo  init 0\par
+\par
+- \lang1042\'bf\'ec\'ba\'d0\'c5\'f5\'c0\'c7 \'c0\'a7\'c4\'a1\par
+C:\\users\\[\'b0\'e8\'c1\'a4]\\Virtualbox VMs\\Ubuntu \'b5\'f0\'b7\'ba\'c5\'e4\'b8\'ae\'b8\'a6 \'be\'d0\'c3\'e0\'c7\'cf\'bc\'bc\'bf\'e4.\par
+----> \'bd\'c7\'bd\'c0\'c7\'d2 \'b6\'a7 \'bf\'ec\'ba\'d0\'c5\'f5\'b8\'a6 2\'b0\'b3\'b8\'a6 \'bb\'e7\'bf\'eb\'c7\'d2 \'bc\'f6\'b5\'b5 \'c0\'d6\'c0\'bd(\'b4\'d9\'b8\'a5 \'c0\'cc\'b8\'a7\'c0\'bb \'bb\'e7\'bf\'eb). \'c7\'ca\'bf\'e4\'c7\'d2 \'b6\'a7 \'be\'d0\'c3\'e0\'b8\'b8 \'c7\'ae\'b8\'e9  \'b5\'ca.\par
+----> \'bf\'ec\'ba\'d0\'c5\'f5 \'be\'d0\'c3\'e0\'c0\'bb \'c7\'d8\'c1\'a6\'c7\'cf\'b1\'e2 \'c0\'fc\'bf\'a1 \'c0\'cc\'b8\'a7\'c0\'bb \'b9\'d9\'b2\'d9\'b0\'ed \'be\'d0\'c3\'e0\'c7\'d8\'c1\'a6\'c7\'d5\'b4\'cf\'b4\'d9. Ubuntu,  Ubuntu2,  Ubuntu3 \'b5\'ee\'b5\'ee\par
+\par
+* CentOS \par
+- \'bf\'ec\'b8\'ae\'b3\'aa\'b6\'f3\'bf\'a1\'bc\'ad\'b4\'c2 Red Hat\'c0\'bb \'b8\'b9\'c0\'cc \'bb\'e7\'bf\'eb\'c7\'cf\'b4\'c2\'b5\'a5, CentOS\'b0\'a1 Red Hat\'b0\'fa \'b0\'c5\'c0\'c7 \'b5\'bf\'c0\'cf\'c7\'cf\'b1\'e2 \'b6\'a7\'b9\'ae.\par
+{{\field{\*\fldinst{HYPERLINK https://www.centos.org/ }}{\fldrslt{https://www.centos.org/\ul0\cf0}}}}\f0\fs24\par
+Download\'c5\'ac\'b8\'af, \lang18\par
+CentOS-8.5.2111-x86_64-dvd1.iso  \lang1042\'c6\'c4\'c0\'cf \'b4\'d9\'bf\'ee\'b7\'ce\'b5\'e5  ---> \'bf\'c0\'c8\'c4 3\'bd\'c3 \'c2\'eb \'bb\'e7\'bf\'eb\'c7\'d2 \'bf\'b9\'c1\'a4\par
+\lang18 (\lang1042\'b3\'ca\'b9\'ab \'bf\'c0\'b7\'a1\'b0\'c9\'b8\'ae\'b8\'e9 \'b4\'d9\'b8\'a5 \'b8\'b5\'c5\'a9\'bf\'a1\'bc\'ad \'b9\'de\'c0\'b8\'bc\'bc\'bf\'e4.) \lang18\par
+\par
+\lang1042\'be\'d0\'c3\'e0\'c0\'cc \'bf\'cf\'b7\'e1\'b5\'c8 \'ba\'d0\'b5\'e9\'c0\'ba \'b4\'d9\'bd\'c3 VirtualBox\'b8\'a6 \'c4\'d1\'b0\'ed, Ubuntu\'b8\'a6 \'ba\'ce\'c6\'c3\'c7\'cf\'bc\'bc\'bf\'e4.\lang18\par
+\par
+\lang1042\'be\'d0\'c3\'e0\'c0\'bb \'c7\'cf\'b0\'ed \'c0\'d6\'b4\'c2 \'ba\'d0\'b5\'e9\'c0\'ba \'bc\'f6\'be\'f7\'c8\'ad\'b8\'e9\'c0\'bb \'ba\'b8\'b0\'ed, \'bd\'c7\'bd\'c0\'c0\'ba \'b3\'aa\'c1\'df\'bf\'a1 \'c7\'cf\'bc\'bc\'bf\'e4.\par
+\par
+\'c8\'ad\'b8\'e9\'c0\'bb \'b8\'f0\'b5\'ce \'c1\'f6\'bf\'ec\'b0\'ed \'c4\'bf\'bc\'ad\'b8\'a6 \'c0\'a7\'b7\'ce \'bf\'c3\'b8\'ae\'b7\'c1\'b8\'e9,  Ctrl\'c5\'b0+l(\'bf\'a4) \'c0\'bb \'b4\'a9\'b8\'a3\'b8\'e9 \'b5\'cb\'b4\'cf\'b4\'d9.\par
+\par
+$1\'c0\'ba \'c3\'b9\'b9\'f8\'c2\'b0 \'c4\'c3\'b7\'b3,  $2\'b4\'c2 \'b5\'ce\'b9\'f8\'c2\'b0 \'c4\'c3\'b7\'b3 \'b5\'ee\'b5\'ee\par
+\'b1\'b8\'ba\'d0\'c0\'da\'b4\'c2 \'b0\'f8\'b9\'e9(space)\'c0\'cc \'b5\'cb\'b4\'cf\'b4\'d9.\par
+\par
+$ less  /var/log/auth.log\par
+   q\'b8\'a6 \'b4\'a9\'b8\'a3\'b8\'e9 \'c5\'cd\'b9\'cc\'b3\'ce\'b7\'ce \'b5\'b9\'be\'c6\'bf\'c9\'b4\'cf\'b4\'d9.\par
+\par
+$ cat  /var/log/auth.log  |  awk  '\{print $5\}'              // \'b7\'ce\'b1\'d7 \'c6\'c4\'c0\'cf\'bf\'a1\'bc\'ad 5\'b9\'f8\'c2\'b0 \'c4\'c3\'b7\'b3\'b8\'b8 \'ba\'bc \'bc\'f6 \'c0\'d6\'c0\'bd\par
+$ cat  /var/log/auth.log  |  awk  '\{print $5\}'  |  uniq -c           // \'c1\'df\'ba\'b9 \'c1\'a6\'b0\'c5\par
+\par
+cat\'c0\'ba \'c5\'cd\'b9\'cc\'b3\'ce\'bf\'a1\'bc\'ad \'ba\'b8\'b4\'c2 \'b0\'cd\'c0\'cc\'b0\'ed, less\'b4\'c2 \'ba\'b0\'b5\'b5\'c0\'c7 app\'c0\'bb \'bd\'c7\'c7\'e0\'c7\'d8\'bc\'ad \'b1\'d7 \'c8\'ad\'b8\'e9\'bf\'a1\'bc\'ad \'ba\'b8\'b4\'c2 \'b0\'cd\par
+\par
+* Telnet, FTP, rlogin, http, smtp \'b5\'ee \'be\'cf\'c8\'a3\'c8\'ad \'be\'c8\'b5\'ca  ----> Sniffing(\'b5\'b5\'c3\'bb)\'c0\'c7 \'bf\'ec\'b7\'c1\'b0\'a1 \'c0\'d6\'c0\'bd\par
+\par
+* SSH, https \'b5\'ee\'b5\'ee \'be\'cf\'c8\'a3\'c8\'ad\'b5\'c7\'b4\'c2 \'c7\'c1\'b7\'ce\'c5\'e4\'c4\'dd\'c0\'bb \'bb\'e7\'bf\'eb\'c7\'d8\'be\'df \'c7\'d4\par
+\par
+* SSH : Secure SHell\par
+\par
+\'c8\'ae\'c0\'ce)  ubuntu \'c0\'cc\'b9\'cc\'c1\'f6 \'be\'d0\'c3\'e0 \'b9\'d7 CentOS \'b4\'d9\'bf\'ee\'b7\'ce\'b5\'e5\lang18\par
+\par
+* VirtualBox\lang1042\'c0\'c7 \'bc\'b3\'c1\'a4\'c0\'bb \'b9\'d9\'b2\'e3\'bc\'ad \'bf\'a9\'b7\'af\'b4\'eb\'c0\'c7 \'b0\'a1\'bb\'f3\'b8\'d3\'bd\'c5\'b5\'e9\'c0\'bb \'bf\'ac\'b0\'e1\'c7\'cf\'b4\'c2 \'c0\'db\'be\'f7\par
+\lang18 - \lang1042\'bf\'ec\'ba\'d0\'c5\'f5\'b8\'a6 \'c0\'fc\'bf\'f8OFF \'c7\'d5\'b4\'cf\'b4\'d9.\par
+\par
+- \'c6\'c4\'c0\'cf > \'c8\'af\'b0\'e6\'bc\'b3\'c1\'a4 > \'b3\'d7\'c6\'ae\'bf\'f6\'c5\'a9 > NAT Network \'c3\'df\'b0\'a1 \'c5\'ac\'b8\'af ----> NAT Network\'c3\'df\'b0\'a1\'b5\'ca\par
+- Ubuntu > \'bc\'b3\'c1\'a4 > \'b3\'d7\'c6\'ae\'bf\'f6\'c5\'a9 > 'NAT'\'b8\'a6 'NAT Network'\'b7\'ce \'b9\'d9\'b2\'e3\'c1\'dd\'b4\'cf\'b4\'d9.\par
+- Ubuntu\'b8\'a6 \'ba\'ce\'c6\'c3\'c7\'d5\'b4\'cf\'b4\'d9.\par
+\par
+* \'bf\'a9\'b7\'af\'b4\'eb\'c0\'c7 \'b0\'a1\'bb\'f3 \'b8\'d3\'bd\'c5\'c0\'bb \'bb\'e7\'bf\'eb\'c7\'d2 \'b6\'a7 \'bc\'ad\'b7\'ce \'c5\'eb\'bd\'c5\'c0\'cc \'b5\'c7\'b0\'d4 \'c7\'cf\'b7\'c1\'b8\'e9,\par
+- NAT Network\'b7\'ce \'c1\'f6\'c1\'a4\par
+- \'bc\'ad\'b7\'ce \'b4\'d9\'b8\'a5 Adapter\'b8\'a6 \'bb\'e7\'bf\'eb\'c7\'d5\'b4\'cf\'b4\'d9.   (\'c3\'bc\'c5\'a9\'c7\'d2 \'b6\'a7 \'c1\'df\'ba\'b9\'c0\'cc \'be\'c8\'b5\'c7\'b8\'e9 \'b5\'ca)\par
+\par
+* \'c0\'fa\'c0\'e5 \'bf\'eb\'b7\'ae \'ba\'ce\'c1\'b7 \'b9\'ae\'c1\'a6\'b8\'a6 \'c7\'d8\'b0\'e1\'c7\'cf\'b7\'c1\'b8\'e9\par
+- \'b0\'a1\'bb\'f3\'b8\'d3\'bd\'c5(Ubuntu)\'b8\'a6 \'c0\'fc\'bf\'f8\'c0\'bb \'b2\'fc\'b4\'cf\'b4\'d9.\par
+- \'bc\'b3\'c1\'a4\'bf\'a1\'bc\'ad \'bc\'f6\'c1\'a4\par
+\par
+\lang18 * \lang1042\'bf\'dc\'ba\'ce\'bf\'a1 \'c0\'d6\'b4\'c2 \'bd\'c3\'bd\'ba\'c5\'db\'b0\'fa \'bf\'ac\'b0\'e1\'c7\'cf\'b7\'c1\'b8\'e9, Port Forwarding \'b5\'ee\'c0\'c7 \'b9\'e6\'b9\'fd\'c0\'bb \'bb\'e7\'bf\'eb\'c7\'d8\'be\'df \'c7\'d4\par
+- \'bb\'e7\'bc\'b3 \'b3\'d7\'c6\'ae\'bf\'f6\'c5\'a9\'c0\'c7 \'c6\'af\'bc\'ba\'bb\'f3 \'bf\'dc\'ba\'ce\'bf\'a1\'bc\'ad \'b5\'e9\'be\'ee\'bf\'c0\'b4\'c2 \'b0\'cd\'c0\'cc \'b8\'b7\'c7\'f4\'c0\'d6\'b1\'e2 \'b6\'a7\'b9\'ae\'bf\'a1, Port Forwarding\'c0\'bb \'bb\'e7\'bf\'eb\'c7\'d8\'be\'df \'c7\'d4\par
+\par
+MySQL root \'c6\'d0\'bd\'ba\'bf\'f6\'b5\'e5 : Aivle12#$            // \'b4\'eb,\'bc\'d2,\'bc\'fd,\'c6\'af \'bc\'af\'be\'ee\'bc\'ad 10\'c0\'da\'b8\'ae\par
+\par
+$ sudo mysql_secure_installation\par
+y\par
+1 (Medium)\par
+root password : Aivle12#$\par
+\'b1\'d7 \'b5\'da\'b7\'ce \'b8\'f0\'b5\'ce y \'b8\'a6 \'c0\'d4\'b7\'c2\'c7\'d4   ----> \'c0\'cc\'b7\'b8\'b0\'d4 \'bc\'b3\'c1\'a4\'c7\'d8\'be\'df \'b0\'ad\'b7\'c2\'c7\'d1 \'ba\'b8\'be\'c8\'c0\'cc \'b5\'ca\par
+\par
+\par
+* \'bf\'eb\'b7\'ae\'ba\'ce\'c1\'b7 \'b9\'ae\'c1\'a6\'b0\'a1 \'b9\'df\'bb\'fd\'c7\'cf\'b4\'c2 \'b0\'e6\'bf\'ec\par
+  \'c6\'c4\'c0\'cf > \'b0\'a1\'bb\'f3\'b9\'cc\'b5\'f0\'be\'ee \'b0\'fc\'b8\'ae\'c0\'da > \'be\'c6\'b7\'a1\'c2\'ca\'bf\'a1 \'bf\'eb\'b7\'ae\'c0\'bb \'b3\'cb\'b3\'cb\'c7\'cf\'b0\'d4 \'b4\'c3\'b7\'c1\'c1\'dc\par
+\par
+\'bd\'c7\'bd\'c0 \'b9\'ae\'bc\'ad\'c0\'c7 p.12~15\'b1\'ee\'c1\'f6 \'bd\'c7\'bd\'c0\'c7\'d5\'b4\'cf\'b4\'d9. (\'c0\'fc\'c3\'bc\'c6\'e4\'c0\'cc\'c1\'f6\'b7\'ce\'b4\'c2 p.107~110\'b1\'ee\'c1\'f6)\par
+\par
+* \'b0\'fa\'c1\'a6 \'c1\'a6\'c3\'e2\'b9\'e6\'b9\'fd (4\'bd\'c3\'b1\'ee\'c1\'f6 \'c7\'ca\'bf\'e4\'c7\'cf\'b8\'e9 \'c3\'df\'b0\'a1\'bd\'c3\'b0\'a3\'c0\'bb \'b5\'e5\'b8\'ae\'b0\'da\'bd\'c0\'b4\'cf\'b4\'d9.)\par
+- \'c0\'a5\'ba\'ea\'b6\'f3\'bf\'ec\'c0\'fa\'b7\'ce Gnuboard\'bf\'a1 \'c1\'a2\'bc\'d3\'c7\'d8\'bc\'ad \'bb\'e7\'c1\'f8\'c0\'bb \'be\'f7\'b7\'ce\'b5\'e5\par
+  \'b1\'d7\'b4\'a9\'ba\'b8\'b5\'e5 \'b0\'d4\'bd\'c3\'c6\'c7\'bf\'a1 \'b0\'ad\'be\'c6\'c1\'f6 \'bb\'e7\'c1\'f81\'b0\'b3,  \'b0\'ed\'be\'e7\'c0\'cc \'bb\'e7\'c1\'f81\'b0\'b3 \'be\'f7\'b7\'ce\'b5\'e5 ---> \'c4\'b8\'c3\'c4\'c7\'d8\'bc\'ad jpg\'b7\'ce \'c0\'fa\'c0\'e5\'c7\'cf\'b0\'ed \'c6\'c0\'c1\'ee\'bf\'a1 \'be\'f7\'b7\'ce\'b5\'e5\par
+  \'bb\'e7\'c1\'f8 \'b1\'b8\'c7\'cf\'b4\'c2 \'b0\'f7 : unsplash.com   \'b6\'c7\'b4\'c2  pixabay.com  ----> \'c0\'fa\'c0\'db\'b1\'c7Free\'c0\'cc\'b9\'cc\'c1\'f6 \'b4\'d9\'bf\'ee\'b7\'ce\'b5\'e5 \'b0\'a1\'b4\'c9\par
+\par
+* \'bd\'c7\'bd\'c0\par
+- \'bf\'ec\'ba\'d0\'c5\'f5 \'bc\'b3\'c4\'a1 (\'bf\'eb\'b7\'ae\'c0\'bb 30G\'c1\'a4\'b5\'b5 \'b3\'cb\'b3\'cb\'c7\'cf\'b0\'d4 \'bc\'b3\'c1\'a4)\par
+- \'be\'c6\'c6\'c4\'c4\'a1, PHP, \'b1\'e2\'c5\'b8 \'b5\'ee\'b5\'ee, Gnuboard \'bc\'b3\'c4\'a1 \'b5\'ee\par
+\par
+* \'ba\'b9\'c1\'a6 (\'bf\'ec\'ba\'d0\'c5\'f5.ISO\'c6\'c4\'c0\'cf\'c0\'cc \'be\'f8\'c0\'b8\'b8\'e9)\par
+- \'b0\'a1\'bb\'f3\'b8\'d3\'bd\'c5(\'bf\'ec\'ba\'d0\'c5\'f5)\'c0\'bb \'c0\'fc\'bf\'f8\'c0\'bb Off\'c7\'cf\'b0\'ed\par
+- \'bf\'c0\'b8\'a5\'c2\'ca \'b8\'b6\'bf\'ec\'bd\'ba \'c5\'ac\'b8\'af, \'ba\'b9\'c1\'a6 \'c5\'ac\'b8\'af ----> \'ba\'b9\'c1\'a6\par
+\par
+* 3Tier : WAS\'bf\'cd DB\'bc\'ad\'b9\'f6\'b8\'a6 \'ba\'d0\'b8\'ae\'c7\'cf\'b4\'c2 \'b9\'e6\'bd\'c4 (\'ba\'b9\'c1\'a6\'c7\'d1 \'b0\'e6\'bf\'ec, WAS\'bf\'a1 \'c0\'d6\'b4\'c2 MySQL\'c0\'ba \'bb\'e7\'bf\'eb \'be\'c8\'c7\'cf\'b8\'e9\'b5\'ca)\par
+  2Tier : WAS\'bf\'cd DB\'b8\'a6 \'c7\'d1\'bc\'ad\'b9\'f6\'bf\'a1 \'bc\'b3\'c4\'a1\'c7\'cf\'b4\'c2 \'b9\'e6\'bd\'c4\par
+* Gnuboard\'b8\'a6 \'bc\'b3\'c1\'a4\'c7\'d2 \'b6\'a7 \'b0\'e8\'c1\'a4\'c0\'cc\'b3\'aa \'ba\'f1\'b9\'d0\'b9\'f8\'c8\'a3\'b4\'c2 \'bf\'a9\'b7\'af\'ba\'d0\'b5\'e9\'c0\'cc \'bc\'b3\'c1\'a4\'c7\'cf\'b4\'c2 \'b0\'cd\'c0\'d4\'b4\'cf\'b4\'d9.  (admin/admin1234)  \par
+\par
+\'c8\'a4\'bd\'c3 \'b0\'e8\'c1\'a4\'c0\'bb \'c1\'f6\'bf\'ec\'b0\'ed \'b4\'d9\'bd\'c3 \'b8\'b8\'b5\'e9\'b7\'c1\'b8\'e9,\par
+MySQL> drop  user  board;\par
+\par
+3Tier\'b7\'ce \'b1\'b8\'bc\'ba\'c7\'d2 \'b6\'a7 Connection Error \'b0\'a1 \'b3\'aa\'bf\'c0\'b4\'c2 \'b0\'e6\'bf\'ec,  2Tier\'b7\'ce \'bc\'b3\'c1\'a4 \'b0\'a1\'b4\'c9\par
+\par
+\par
+\'bd\'c3\'b0\'a3\'c0\'ba 4\'bd\'c3 30\'ba\'d0\'b1\'ee\'c1\'f6 \'c1\'a6\'c3\'e2\'c7\'cf\'bc\'bc\'bf\'e4.\par
+MySQL>  create  user   board@\cf1 localhost\cf0   identified by 'Cyber12#$';           <------ \'b7\'ce\'c4\'c3\'bf\'a1\'bc\'ad\'b8\'b8 \'c1\'a2\'bc\'d3\'b5\'ca\par
+MySQL>  create  user   board@\cf1 '%'\cf0   identified by 'Cyber12#$';                  <------- 3Tier\'b7\'ce \'c7\'d2 \'b0\'e6\'bf\'ec, \'bf\'dc\'ba\'ce\'bf\'a1\'bc\'ad \'c1\'a2\'bc\'d3\'c7\'d8\'be\'df \'b0\'e6\'bf\'ec\par
+\par
+\par
+DB\'bc\'ad\'b9\'f6 : Adapter1,  NATNetwork\par
+WAS : Adapter2,  NATNetwork  \par
+------> IP\'b0\'a1 \'bc\'ad\'b7\'ce \'b4\'d9\'b8\'a3\'b0\'ed, \'c5\'eb\'bd\'c5 \'b0\'a1\'b4\'c9\'c7\'d8\'c1\'fc\par
+\par
+php-gd  \'c0\'cc\'b9\'cc\'c1\'f6 \'b5\'ee\'c0\'cc \'c0\'df \'be\'c8\'ba\'b8\'c0\'cf\'bc\'f6 \'c0\'d6\'c0\'bd\par
+-----> \'bc\'b3\'c1\'a4 \'c8\'c4\'bf\'a1\'b4\'c2 \'be\'c6\'c6\'c4\'c4\'a1 \'c0\'e7\'bd\'c3\'c0\'db  service apache2 restart  \'b6\'c7\'b4\'c2 systemctl  restart  apache2\par
+\par
+* 3Tier\'b8\'a6 \'c7\'d2\'b6\'a7\'c0\'c7 \'b9\'ae\'c1\'a6\'c1\'a1 (Connection Error\'b9\'ae\'c1\'a6\'b8\'a6 \'c7\'d8\'b0\'e1\'c7\'cf\'b4\'c2 \'b9\'e6\'b9\'fd)\par
+MySQL\'c0\'cc \'b7\'ce\'c4\'c3\'bf\'a1\'bc\'ad\'b8\'b8 \'c1\'a2\'bc\'d3\'c0\'bb \'c7\'e3\'bf\'eb\'c7\'cf\'b4\'c2 \'b9\'ae\'c1\'a6\'b0\'a1 \'c0\'d6\'c0\'bd\par
+DB\'bc\'ad\'b9\'f6\'bf\'a1\'bc\'ad \'be\'c6\'b7\'a1\'bf\'cd \'b0\'b0\'c0\'cc \'bc\'b3\'c1\'a4\'c0\'bb \'c3\'df\'b0\'a1\'c7\'d5\'b4\'cf\'b4\'d9.\par
+$ cd  /etc/mysql/mysql.conf.d\par
+$ sudo  vi mysqld.cnf\par
+  bind-address 127.0.0.1 \'c0\'cc\'b6\'f3\'b0\'ed \'bd\'e1\'c0\'d6\'b4\'c2 \'ba\'ce\'ba\'d0\'c0\'cc \'c0\'d6\'c0\'bd...   \'b8\'c7 \'be\'d5\'bf\'a1 #\'c0\'bb \'b3\'d6\'be\'ee\'bc\'ad \'c1\'d6\'bc\'ae\'c3\'b3\'b8\'ae\'b8\'a6 \'c7\'d8\'c1\'dd\'b4\'cf\'b4\'d9.\par
+  :wq\par
+$ sudo  service  mysql  restart                  // mysql \'c0\'e7\'bd\'c3\'c0\'db\par
+\par
+* \'b1\'d7\'b4\'a9\'ba\'b8\'b5\'e5\'b8\'a6 2Tier\'b7\'ce \'c7\'df\'b4\'c2\'b5\'a5, 3Tier\'b7\'ce \'c7\'d8\'ba\'b8\'b0\'ed \'bd\'cd\'c0\'ba \'b0\'e6\'bf\'ec,\par
+  WAS\'bf\'a1\'bc\'ad rm -r  /var/www/html/gnuboard5\par
+\par
+* DB\'bc\'ad\'b9\'f6\'b8\'a6 \'ba\'b9\'c1\'a6\'c7\'d8\'bc\'ad WAS2\'b7\'ce \'b8\'b8\'b5\'e9\'b0\'ed,\par
+  MySQL\'bb\'e8\'c1\'a6\'b9\'e6\'b9\'fd  $ sudo  apt  autoremove  mysql-server   \par
+\par
+\par
+\par
+\lang18\par
+}
+ 
