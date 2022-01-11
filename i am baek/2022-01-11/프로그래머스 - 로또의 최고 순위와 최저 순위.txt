@@ -1,0 +1,33 @@
+프로그래머스 로또의 최고 순위와 최저 순위
+
+
+def solution(lottos, win_nums):
+    zero = 0
+    answerCount = 0
+    answer = []
+    
+    # 0 갯수 세기
+    zero = lottos.count(0)
+    
+    # 정답 갯수 세기
+    for i in win_nums:        
+        try:
+            if lottos.index(i) >= 0:
+                answerCount += 1
+        except ValueError:
+            continue
+    
+    top = abs(answerCount + zero - 7) # 최고 순위
+    bottom = abs(answerCount - 7) # 최저 순위
+    
+    if zero == 6: # 로또 번호가 모두 훼손 될 경우(모두 0)
+        answer.append(top)
+        answer.append(zero)
+    elif answerCount == 0: # 운이 엄청 안 좋을 경우(모두 틀림)
+        answer.append(top - 1)
+        answer.append(bottom - 1)
+    else:     
+        answer.append(top)
+        answer.append(bottom)
+    
+    return answer
