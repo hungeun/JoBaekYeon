@@ -1,0 +1,47 @@
+AJAX == GIT   =>기술 자체
+fetch,axios ==github,bitbucket,gitlab =>기술을 표현할때 선택권
+===========================================================================
+Client -> 요청을 보내는 쪽 / Server ->응답을 받는 쪽
+
+Query Parameter => GET  / http://127.0.0.1:8000/first/req/get/?a=10&b=20&c=30            =>? 존재
+ Form Data , JSON Date => POST / http://127.0.0.1:8000/first/req/post/		      =>? 존재 x
+
+*절대적인 것은 아님*
+GET / POST
+조회 / 입력, 수정, 삭제
+select / insert update delete
+
+외워야 하는 HTML
+-form, input, select, textarea  / why? 사용자가 요청하는 데이터를 전달하기 위해서
+
+GET / POST 활용 방법
+1.로그인
+ -G -로그인 양식 화면 / P - 로그인 기능 실행
+2.회원가입
+ -G -양식 화면 / P - 기능 실행
+3.글쓰기
+ -G -글쓰기 화면 / P - 글쓰기 기능 실행
+
+POST방식 일때만
+-CSRF (Cross Site Request Forgery) /Cross라는 단어가 나오면 부정적인 의미느낌
+   - 변조해서 공격
+   - 사이트 간 요청 위조
+   - http://ggoreb.com/article/1 과 같은 URL의 패턴을 분석하여 일반적인방법으로 접근 할 수 없는 페이지에 접근하는 등 취약점을 공격하는 방법
+   - referer (referrer의 오타, 요청 전 페이지) 정보를 확인하거나토큰(랜덤값)을 발급하여 정상적인 접근인지 확인
+   - 장고에서는 템플릿의 태그 기능을 이용하여 토큰을 발급하는 기능 제공
+   - POST 요청 시 {% csrf_token %} 사용 / 미사용시 403에러
+
+-사용방법(*)
+  -특별한 프로그램 사용 -> postman, chrome plugin
+  -자바스크립트 사용
+  -(*)html의 <form> 사용  
+
+  -html에서는 get / post만 사용 가능
+  -모든 요청의 기본값은 get
+
+HTTP Method
+-POST / GET / PUT / DELETE
+
+AJAX - JavaScript대상으로 사용
+
+
