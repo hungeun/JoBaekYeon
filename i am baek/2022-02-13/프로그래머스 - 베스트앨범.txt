@@ -1,0 +1,29 @@
+프로그래머스 - 베스트 앨범
+
+def solution(genres, plays):
+    answer = []
+    info = {}
+    
+    for i in range(len(plays)):
+        if genres[i] not in info:
+            info[genres[i]] = {'total':plays[i], i : plays[i]} # 장르별 총 재생수, 각 노래 번호 별 재생 수로 구별
+        else:
+            info[genres[i]]['total'] += plays[i]
+            info[genres[i]][i] = plays[i]
+    #{'classic': {'total': 1450, 0: 500, 2: 150, 3: 800}, 'pop': {'total': 3100, 1: 600, 4: 2500}}
+    
+    one = sorted(info.items(), key = lambda x: x[1]['total'], reverse = True)  # 1번 규칙
+    #[('pop', {'total': 3100, 1: 600, 4: 2500}), ('classic', {'total': 1450, 0: 500, 2: 150, 3: 800})]
+    
+    for i in range(len(one)):
+        two = sorted(one[i][1].items(), key = lambda x : x[1], reverse = True) # 2번 규칙
+        # [('total', 1450), (3, 800), (0, 500), (2, 150)]
+        
+        for j in range(2): # 각 장르별 재생수가 가장 높은 두 곡만 호출
+            try: # 장르에 한곡만 있을 경우 index에러 캐치 
+                answer.append(two[j+1][0])
+            except IndexError:
+                continue
+
+
+    return answer

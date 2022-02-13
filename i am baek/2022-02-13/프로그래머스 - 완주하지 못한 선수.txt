@@ -1,0 +1,21 @@
+프로그래머스 - 완주하지 못한 선수
+
+
+def solution(participant, completion):
+    dict = {}
+    for i in participant:
+        if i not in dict:
+            dict[i] = 1
+        else:
+            dict[i] += 1
+    for i in completion:
+        dict[i] -= 1
+    for i in dict.keys():
+        if dict[i] == 1:
+            return i
+        
+        
+    
+    
+    
+    return 1

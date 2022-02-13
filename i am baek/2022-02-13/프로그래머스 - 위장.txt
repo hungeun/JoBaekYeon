@@ -1,0 +1,17 @@
+프로그래머스 - 위장
+
+def solution(clothes):
+    answer = 1
+    dict = {}
+    
+    for i in range(len(clothes)):
+        if clothes[i][1] not in dict:
+            dict[clothes[i][1]] = 1
+        else:
+            dict[clothes[i][1]] += 1
+    # 헤드기어 3 = 1번 기어, 2번 기어, 안입는다
+    # 귀마개 2 = 1번 귀마개, 안입는다.
+    for var in dict.values():
+        answer *= (var + 1)  
+    
+    return answer - 1
