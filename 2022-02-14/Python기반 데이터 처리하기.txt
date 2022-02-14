@@ -1,0 +1,187 @@
+data.head() = > 경쟁사 / 자사 가격 전체 비교 말고 지역별로 비교는? / group by , scatter ? -> 두개 어케 쓰는지
+
+카시트 /   eda , cda / =>포트폴리오 해보기
+==============================================================================과제 꺼
+
+seaborn 라이브러리
+ -Seaborn은 Matplotlib을 기반으로 다양한 색상 테마와 통계용차트 등의 기능을 추가한 시각화 패키지
+ -Matplotlib 보다 더 다양하게, 더 쉽게, 더욱 다각적으로 분석할 수 있는 차트 제공
+
+hue : 어떤 데이터랑 비교를 할 것 인지
+ =>sns.histplot(data = titanic, x='Fare', bins = 16 , hue = 'Pclass') / titanic의 Fare 데이터와 Pclass 데이터를 비교해 줘라
+
+histplot : histogram
+
+kdeplot : densityplot
+
+boxplot
+
+distplot :  histogram + density plot / sns.distplot (데이터, bins = , hist_kws = dict() ) / sns.distplot(titanic['Age'], bins = 16, hist_kws = dict(edgecolor='grey')) / hist_kws = dict() : 히스토그램을 꾸미기 위한 옵션, 딕셔너리 형태로 입력
+
+jointplot : scatter + histogram(혹은 density plot) / 두 숫자형 변수의 분포를 한꺼번에 비교하여 보여줌 / hue 옵션으로 범주 차원 추가해서 볼 수 있다 / sns.jointplot(x='Petal.Length', y='Petal.Width', data = iris)
+
+pairplot :  scatter + histogram(혹은 density plot) 확장 / 모든 숫자형 변수들에 대해서 서로 비교하는 산점도 표시 , 각 변수에 대해서는 히스토그램 (혹은 density plot) 표시 , 단점 : 시간이 오래걸림 / sns.pairplot(iris, hue = 'Species')
+
+countplot :  집계 + bar plot / Matplotlib에서는 bar plot을 그릴때, 반드시 집계가 선행되어야함 but seaborn.countplot은 집꼐를 포함하여 barplot을 그려준다. / sns.countplot(x="Embarked", data=titanic)
+
+barplot : 평균비교 bar plot + error bar / seaborn.barplot은 범주별(x) , 숫자(y)의 평균을 비교하는 그래프 (**) , 가운데 직선은 신뢰구간 / sns.barplot(x="Embarked", y="Fare", data = titanic)
+
+heatmap : 두 범주 집계 시각화 / 두 범주를 집계한 결과를 색의 농도로 표현, 집계(groupby) 와 피봇(pivot)을 먼저 만들어 줘야함, 여러 범주를 갖는 변수 비교 시 유
+		=> temp1 = titanic.groupby(['Embarked', 'Pclass'])     temp1 = titanic.groupby(['Embarked','Pclass'], as_index = False)['PassengerId'].count()    temp2 = temp1.pivot('Embarked','Pclass', 'PassengerId')   print(temp2)
+			sns.heatmap(temp2, annot = True) #False는 값이 안나옴 -> 범주가 너무 많을때 제외하고 웬만하면 True
+ 
+			sns.heatmap(temp2, annot = True, fmt = 'd', linewidth = .2) # fmt = 'd' 는 정수 타입으로 바꿔줌
+
+pivot : 집계된 데이터를 재구성 할 수 있다 / dataframe.pivot(index,column,values) / temp1.pivot('zn2', 'chas', 'medv')
+
+
+
+
+오차 범위 -> 신뢰구간 + 95%... / 신뢰구간 + 퍼센트가  나옴 => 내일 배움
+
+============================================================================
+
+시각화 : 산점도
+-> 상관분석 : 두 데이터의 연관\
+-> plt.scatter(x축 값, y축 값)  / 데이터프레임으로부터 plt.scatter('x변수' ,'y변수' , data = dataframe 이름) / plt.scatter( air['Temp'] , air['Ozone'] ) , plt.scatter( 'Temp' , 'Ozone' , data = air)
+-> 두 변수의 관계 ( 산점도에서 또렷한 패던이 보이면 강한 관계 *특히, 직선 패턴* )
+
+수치화 : 상관계수와 상관분석
+->공분산, 상관계수 : 공식에서 분자 부분이 공분산 / 양의 상관관계, 음의 상관관계가 클 수록 값이 커지고, 작아짐
+->상관계수 r : 공분산을 표준화 한 값 / -1 ~ 1 사이의 값 / -1 , 1 에 가까울수록 강한 상관관계 
+
+상관계수와 상관분석
+-> import scipy.stats as spst     spst.pearsonr(X,Y)
+->scipy패키지 : 두 변수로부터 상관계수 구하기 / 결과 - (상관계수 , p-value) 
+->p-value : 귀무가설 : 상관계수가 0 / 대립가설 : 상관계수 0 이 아님
+->데이터프레임으로부터 상관계수 구하기 : 데이터프레임.corr() / air.corr() / 모든 숫자형 변수들 상호강에 상관계수를 계산 / 상관계수 1은 무시 / 대각선 위쪽이나 아래쪽, 하나만 살피면됨
+
+가설과 가설 검정 이야기
+-> 모집단 : 우리가 알고 싶은 대상 전체 영역 (데이터) , 과거 + 현재 + 미래
+    표본 : 그 대상의 일부 영역 (데이터)
+
+-> 우리는 일부분으로 전체를 추정하고자 한다.  ( 표본을 가지고 모집단 전체를 추정하고 싶어서)
+	모집단에 대한 가설을 수립 ( 온도가 올라가면 -> 판매량이 올라간다 / x에 따라 y가 차이가 있다, x와 y는 관계가 있다)
+	표본을 가지고 가설이 진짜 그러한지 검증(검정) 한다.
+
+-> ex) 어느 시험에서 점수를 80점을 받았다. 
+	-시험을 잘 본 것인가? 
+         
+         어떤 정보를 알면 80점이 높은 점수인지 아닌지 알 수 있을까?
+	-만약 분포를 안다면, 판단 가능  ******** 분포 ********* 판단의 기준을 알 수 있게 해줌 ***************
+	-분포는 우리가 가지고 있는 값에 대해 흔한 결과인지, 드문 결과인지 판단 가능 -> ** 표준편차 ** : 평균으로부터 값들이 얼마나 떨어져 있는지 평균을 낸 값
+
+
+-> 비즈니스 이해단계에서 -> 문제로부터 관심사(y) 도출 , y에 영향 주는 요인(x)를 뽑아 초기 가설 수립
+	ex) 고객 이탈 예측(y)에 영향을 주는 요인 (x) -> 고객의 가입기간(x1) -> 이탈여부(y) / 성별(x2) -> 이탈여부(y)
+
+-> 귀무가설 ( 기존의 입장) : ex)매장지역(x2) 과 수요량(y)은 아무런 관련이 x      => 용어로서 받아 들여라
+
+    대립가설 (내가 세운 가설) : ex)매장지역(x2) -> 수요량(y)  => 용어로서 받아 들여라
+
+
+통계적 검정
+-> 우리는 표본으로부터 (대립)가설을 확인, 모집단에서도 맞을 것이라 주장 ( 대립가설 / 귀무가설)
+
+-> 논리 이야기 ( 만약 귀무가설이 맞다면 , 나의주장(대립가설)에 유리한 결과가 나올 확률은 극히 드물 것이다.)
+
+-> 그렇다면 드물다고 판단하는 기준을 무엇으로 정해야 할까? (드물다고 판단하는 기준 : 보통 5%, 1% 이내)
+
+검정 통계량
+-> 가설검정을 수행하기 위해 검정통계량을 계산해 낸다 ( t 통계량 / x^2(카이제곱) 통계량 / f 통계량)
+
+-> 이들은 각각 기준 대비 차이로 계산됨 ( 계산된 통계량은 각자의 분포를 가짐 / 분포를 통해 차이가 큰지, 작은지 판단 가능 / 쉽계 판단할 수 있게 계산해 준 것이 p-value )
+
+유의수준, 유의확률
+-> 대립가설이 맞다고 할 때, 틀릴 확률과 5%를 비교 ( 작다면, 대립가설 채택->귀무가설 기각 / 크다면, 귀무가설 채택)
+
+-> 대립가설이 맞다고 할 때, 틀릴확률 (=유의확률 , p-value)
+
+-> 5% ( 유의수준 / 5% : 피셔의 밀크티로 부터 유래 / 1% : 조금 더 보수적인 기준 ->ex) 의학, 제조 공정분야 )
+
+=============================================================================================
+
+두 변수의 관계 분석하기 - 범주 vs 범주 
+
+범주 -> 범주
+-> ex) 가설 :성별(x)에 따라 생존여부(y)는 달라질 것이다. / 
+
+-> 교차표로 집계 ( 분할표 / Confusion Matrix )
+
+교차표(pd.crosstab)
+-> pd.crosstab(행,열) => pd.crosstab(titanic['Survived'], titanic['Sex'])
+
+-> pd.crosstab(행,열,normalize =) / normalize : 비율로 계산 ( columns : 컬럼을 중심으로 100프로 만들고 계산 / index : 인덱스를 기준으로 100프로로 만들고 비율 계산 / all : 전체를 )
+	ex) 승선지역에 따라 생존여부 차이 : column ?  -> S,Q,C에 따라 생존여부 -> ~~(S,Q,C) 별 생존 여부 
+				         index -> 생존여부별로 승선지역 
+					x따라 y를 보겠다  ( 헷갈리니 column으로 보자 그냥)
+
+시각화 ( 100% Stacked Bar , mosaic )
+
+-> Pclass --> Survived
+	- crosstab으로 집계 : pd.crosstab(feature, target, normalize = 'index') / 꼭 이 문법 이용
+	- .plot.bar(stacked = true)
+	- 전체 평균선 : plt.axhline()
+		=> temp = pd.crosstab(titanic['Pclass'], titanic['Survived'], normalize = 'index')
+		     print(temp)
+		     temp.plot.bar(stacked=True)
+		     plt.axhline(1-titanic['Survived'].mean(), color = 'r')
+		     plt.show()
+
+->mosaic plot : 범주별 양과 비율을 그래프로 나타내 줌
+	- Pclass별 survived의 비율 비교
+	- from statsmodels.graphics.mosaicplot import mosaic    mosaic(titanic, ['Pclass' , 'Survived']   plt.show() 
+		=>x축 길이는 각 객실등급별 승객비율 / 그중 3등급 객실에 대해서 보면 y축의 길이는, 3등급 객실 승객 중에서 사망, 생존 비율을 의미
+
+ 	=># Pclass별 생존여부를 mosaic plot으로 그려 봅시다.
+		mosaic(titanic, [ 'Pclass','Survived'])
+		plt.axhline(1- titanic['Survived'].mean(), color = 'r')
+		plt.show()
+
+	=> # 저장된 값 순서대로 보여집니다. # 정렬하고 싶으면 .sort_values를 이용하면 됩니다.# 사이 간격도 gap 옵션으로 조정 가능합니다.
+		mosaic(titanic.sort_values(['Pclass', 'Survived']), [ 'Pclass','Survived'], gap = 0.01)
+		plt.axhline(1- titanic['Survived'].mean(), color = 'r')
+		plt.show()
+
+두 범줌형 변수가 아무런 상관이 없다면, (귀무가설이 맞다면)
+-> 범주별 비율의 차이가 전혀 없는 상태가 된다
+-> 조금이라도 관련이 있다면, 비율 혹은 bar의 크기에 조금이라도 차이가 난다.
+
+
+수치화 : 카이제곱검정
+-> 범주형 변수들 사이에 어떤 관계가 있는지, 수치화 하는 방법 => x(chi) - squared Test( 카이 제곱 검정 )
+
+-> 관측빈도 = 실제 값 / (관측빈도 - 기대빈도 ) ^2 = 오차^2
+
+-> 카이 제곱 값이 클수록 대립가설에 가까움 / 얼마나 차이가 나야되는 분포로 ㄱㄱ
+
+-> 카이 제곱 통계량은 기대빈도부터 실제 값에 차이가 얼마나 나냐
+
+-> 보통, 자유도의 2~3배 보다 크면, 차이가 있다고 본다.
+
+-> 범주형 변수의 자유도  ( 연산할 때의 자유 , 계산할 때 자유)
+	- 범주의 수 -1
+
+-> 카이제곱 검정에서는
+	-(x 변수의 자유도) * (y 변수의 자유도)        => 범주가 a,b에서 자유도는 1 -> 이유는 a를 고르면 나머지는 선택을 할 자유 없이 확정 / 범주가 3개면 자유도는 2
+	-ex) Pcalss -> Survived
+		-Pclass : 범주가 3개 , Survived : 2개
+		- (3-1) * (2-1) = 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
