@@ -1,0 +1,281 @@
+웹 크롤링 
+
+
+라이브러리 불러오기 
+
+import pandas as pd 
+
+import requests 
+
+import json 
+
+
+
+웹 크롤링 
+
+Web: client – server (url) 
+
+Python: requests => response 
+
+동적 페이지: URL의 변화 없이 페이지의 데이터를 변환(json 형태) 
+
+정적 페이지: URL을 변환하여 새로운 데이터를 출력(html) 
+ 
+
+동적 페이지에서 데이터 수집 절차 
+
+웹 서비스 분석(개빌자도구) : URL 찾기 
+
+get 방식: request( url ) => response( data )  
+
+- post 방식은 request( url, params, headers ) 
+
+- data는 json(str) 형태 
+
+data(jason(str)) => list, dict => DataFrame 
+
+ 
+
+동적 페이지 웹 크롤링(네이버 주식) 
+
+PC 페이지가 복잡하면 모바일 페이지에서 수집 
+
+웹 크롤링 
+
+def stock_price(code='KOSPI', page_size=20, page=1): 
+
+    """ 
+
+    params: code(KOSPI or KOSDAQ) 
+
+    """ 
+
+    # 1.  웹서비스 분석(개발자 도구) : URL 
+
+    url = f"https://m.stock.naver.com/api/index/{code}/price?pageSize={page_size}&page=	{page}" 
+
+    # 2. 서버에 데이터 요청: request(URL) > response(JSON(str)) 
+
+    response = requests.get(url) 
+
+    # 3. JSON(str) > parsing > dic, list >DataFrame 
+
+    datas = response.json() 
+
+    return pd.DataFrame(datas)[['localTradedAt', 'closePrice']] 
+
+apply(func): 모든 데이터에 func을 적용시킨 결과를 출력 
+
+	kospi['closePrice'] = kospi['closePrice'].apply(lambda data: float(data.replace(',', ''))) 
+
+데이터 스케일링 : min max scale 
+
+z = ( x - min(x) ) / ( max(x) - min(x) ) : 0 <= z <=1 
+
+	for column in df.columns[1:]: 
+
+   		plt.plot(df['date'], minmax_scale(df[column]), label=column) 
+
+ 
+
+API를 이용한 데이터 수집 
+
+어플리케이션 등록 : app_key 
+
+api 문서 확인 : url, params, headers 
+
+request(url, params, headers(app_key)) => response : data(jason(str)) 
+
+data(json(str)) => list, dict => DataFrame 
+
+ 
+
+동적 페이지 웹 크롤링(카카오 번역 api) 
+
+크롤링 정책 
+
+robots.txt : 크롤링 정책을 설명한 페이지 
+
+과도한 크롤링으로 서비스에 영향을 주었을 때 법적 문제가 있을 수 있습니다. 
+
+api 사용 => robots.txt => 서비스에 피해가 가지 않는선에서 수집 
+
+서비스 피해 
+
+지적재산권 
+
+서비스 과부화 
+
+데이터 사용표준(robots.txt) 
+
+API 서비스를 이용한 데이터 수집 
+
+Kakao api(application programing interface) 
+
+application 등록 : app_key 
+
+document 확인 : url 
+
+request(url, app_key, data) => response(json(str)) 
+
+json(str) => list, dic 
+
+웹 크롤링 
+
+def translate(text, src='kr', target='en'): 
+
+    # 1. application 등록 : app_key 
+
+    APP_KEY = '6f48aa4284ac703422a78fe3bce3d47e'     
+
+     
+
+   # 2. document 확인 : url 
+
+   # post: url, params, headers 
+
+    url = 'https://dapi.kakao.com/v2/translation/translate' 
+
+    params = {'query': text, 'src_lang': src, 'target_lang': target} 
+
+    headers = {"Authorization": f"KakaoAK {APP_KEY}"} 
+
+     
+
+    # 3. request(url, app_key, data) => response(json(str)) 
+
+    response = requests.post(url, params, headers=headers) 
+
+    # 4. json(str) => list, dict 
+
+    return response.json()['translated_text'][0][0] 
+
+ 
+
+동적 페이지 웹 크롤링(직방 서비스 원룸 데이터 수집) 
+
+절차 
+
+동이름 => 위도, 경도 
+
+위도, 경도 => geohash code(지역범위) 
+
+geohash => 매물 아이디 
+
+매물 아이디 => 매물 정보 
+
+pip install geohash2 
+
+import geohash2 
+
+웹 크롤링 
+
+def oneroom(address): 
+
+    # 1. 동이름 => 위도, 경도 
+
+    url = f'https://apis.zigbang.com/v2/search?leaseYn=N&q={query} &serviceType=원룸' 
+
+    response = requests.get(url) 
+
+    datas = response.json()['items'][0] 
+
+    lat, lng = datas['lat'], datas['lng'] 
+
+     
+
+    # 2. 위도, 경도 => geohash 
+
+    # pricision = 영역 : 값이 커질수록 영역이 작아짐 
+
+    code = geohash2.encode(lat, lng, precision=5) 
+
+ 
+
+    # 3. geohash => 매물 아이디 
+
+    url = f'https://apis.zigbang.com/v2/items?deposit_gteq=0&domain=zigbang\ 
+
+&geohash={code}&needHasNoFiltered=true&rent_gteq=0&sales_type_in=전세|월세&service_type_eq=원룸' 
+
+    response = requests.get(url) 
+
+     
+
+    datas = response.json()['items'] 
+
+    ids = [data['item_id'] for data in datas]   # listcomprehention 
+
+     
+
+               # 4. 매물 아이디 => 매물 정보 
+
+    url = "https://apis.zigbang.com/v2/items/list" 
+
+    params = { 
+
+        'domain': "zigbang", 
+
+        'withCoalition': 'true', 
+
+        'item_ids': ids[:998] 
+
+    } 
+
+    response = requests.post(url, params) 
+
+     
+
+    items = response.json()['items'] 
+
+    item_df = pd.DataFrame(items) 
+
+     
+
+    columns = [ 
+
+        'item_id', 'sales_title', 'deposit', 'rent', 'size_m2',  
+
+        'floor', 'building_floor', 'title', 'room_type', 'address', 
+
+        'service_type', 'address1', 'manage_cost', 'reg_date', 'is_new' 
+
+    ] 
+
+     
+
+    result_df = item_df[columns] 
+
+    result_df = result_df[result_df['address'].str.contains(address)] 
+
+     
+
+    return result_df.reset_index(drop=True) 
+
+ 
+
+동적 페이지 웹 크롤링(다음 환율 데이터 수집) 
+
+웹서비스 분석 : URL 
+
+url = 'https://finance.daum.net/api/exchanges/summaries'	 
+
+request(url) => response(data) : data(json(str)) 
+
+ 
+
+headers = { 
+
+'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 		(KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36', 
+
+'referer': 'https://finance.daum.net/exchanges' 
+
+ } 
+
+response = requests.get(url, headers = headers) 
+
+data(jason(str)) => dict, list => df 
+
+datas = response.json()['data'] 
+
+df = pd.DataFrame(datas)[['symbolCode', 'date', 'currencyCode', 'basePrice']] 
