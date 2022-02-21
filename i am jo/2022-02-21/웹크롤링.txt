@@ -1,0 +1,122 @@
+2022.02.21
+
+-Intro WEB Service
+
+-Crawling Dynamic Web Page
+	-naver stock datas
+	-daum exchangedatas
+
+-Crawling using API
+	-naver keyword search datas
+
+-Crawling Complex Web Service
+	-zigbang oneroom datas
+=========================================================
+Web?
+-Server & Client Architecture
+	-Client : 브라우져를 통해 서버에 데이터를 요청
+	-Server : client가 데이터를 요청하면 요청에 따라 데이러를 전송
+
+-URL (Uniform Resource Locator)
+	- http://news.naver.com:80/main/read.nhn?mode=LSD&mid=shm&sid1=105&oid=001&aid=0009847211#da_727145
+		-https:// -> Protocol
+		-news -> Sub Domain
+		-naver.com -> Domain
+		-80 -> port (생략 가능)
+		-/main/ - path
+		-read.nhn -> page
+		~~~~~~~~~~~~~~~~여기까지가 파일을 가져오는 거 ( ? 앞)
+		-?mode=LSD&mid=shm&sid1=105&oid=001&aid=0009847211 -> query (데이터를 담아서 보내고 싶을때)
+		-#da_727145 -> fragment (특정 페이지를 보여줌)
+
+-Get & Post ( 데이터 노출의 차이 ) ( 절대적인 것은 아님)
+	Get - URL에 데이터가 포함된다 -> 데이터가 노출 / 길이제한 0
+	Post -Body에 데이터가 포함된다. -> 데이터가 숨겨짐 ( request 의 body에 숨김, 아이디 패스워드 개인정보 등등)
+
+-internet :컴퓨터로 연결하여 TCP/IP (Transmission Control Protocol/Internet Protocol)라는 통신프로토콜을 이용해 정보를 주고받는 컴퓨터 네트워크
+	-우리는 인터넷을 어떻게 사용하고 있을까? -> 해저케이블을 이용하여 전세계 서버에 접속하여 인터넷을 사용하고 있다
+	-무선인터넷 -> 선이 아니라 주파수를 매체로 사용한다. / 우리가 사용하는 단말기만 무선이다.
+
+-OSI 7 Layer
+	-국제표준화기구(ISO)에서 개발한 모델로, 컴퓨터 네트워크 프로토콜 디자인과 통신을 계층으로 나누어 설명한 것이다.
+	-하위 계층으로 갈수록 페이로드가 증가
+		
+-Cookie & Session & Cache
+	-Cooki : 클라이언트에 저장하는 문자열 데이터로 도메인 별로 따로 저장 (클라이언 트 하드디스크에 저장) / 하나의 클라이언트에 300개, 도메인당 20개, 쿠키 하나당 4Kbyte/ naver에 자전거를 검색하면 웹에 기록이 남아 쿠팡가서도 관련된게 뜸
+	-Session : 연결 정보 ( 연결이 끝나면 사라짐)
+	-Cache : 서버나 클라이언트의 메모리에 저장하여 빠르게 데이터를 가져오는 목적의 저장소
+
+-Scraping & Crawling & Spider & Bot
+	-Scraping :데이터를 수집하는 작업
+	-Crawling :여러페이지의 특정 데이터들을 수집하고 분류하는 작업
+	-Spider or Web crawler : 웹 데이터를 수집하는 소프트웨어
+	-Bot : 인터넷 상에서 자동화된 작업을 실행하는 소프트웨어
+
+=====================================================================================
+
+-웹크롤링 방법
+
+동적페이지 : URL의 변경 없이 페이지의 내용이 변경됨 -> json    (이미 페이지에 뭐가 띄워져 있는데 더보기 버튼을 누르면 내용은 더 나오지만 URL은 변경X)
+정적페이지 : URL이 변경되면서 페이지의 내용이 변경됨 -> html (1,2,3 버튼 같은걸 누르면 URL변경이 되면서 내용이 바뀜)
+
+1.웹서비스 분석 : 개발자 도구를 이용 : URL
+2.서버에 데이터 요청 : request(URL) > response(JSON(str))
+3. JSON(str) > parsing(데이터 형태 변경) > dict,list > DataFrame
+def stock_price(code = "KOSPI" ,page_size = 20,page = 1):
+    """
+    params : code(KOSPI or KOSDAQ)
+    """
+    url =f"https://m.stock.naver.com/api/index/{code}/price?pageSize={page_size}&page={page}"   #1
+    response = requests.get(url) 							#2
+    datas = response.json()								#3
+    return pd.DataFrame(datas)[["localTradedAt", "closePrice"]] 				
+
+
+====================================================================================
+
+2022.02.21 summary
+
+web : client - server : url
+
+python : request : request > response
+
+동적페이지 : URL의 변화 없이 페이지의 데이터를 변환 : json 오늘은 이것만
+정적페이지 : URL을 변환해서 새로운 데이터를 출력 : html
+
+동적페이지에서 데이터 수집 절차
+1.웹서비스 분석(개발자도구) : URL
+2.request(url,params,headers) > response(data) : data(json(str))
+3.data(json(str)) > list, dict > DataFrame
+
+API를 이용한 데이터 수집
+1.어플리케이션 등록 : APP_KEY
+2.api 문서 확인 : url,params, headers
+3.request(url,params,headers(APP_KEY)) > response(data) : data(json(str))
+4.data(json(str)) > list, dict > DataFrame
+
+naver : index price , exchange rate
+kakao api : translate
+zigbang : request 3번, geohash
+daum exchange rate : headers(user-agent, referer)
+
+referer? 브라우저를 url1번으로 띄움 : 링크 클릭(url2번) : 브라우저가 url2번으로 띄워짐 -> 클라이언트
+:서버에 url2번을 요청 (referer값으로 무엇을 요청했는지 알아냄): 서버에서 url2번 hrml을 보내줌 -> 서버
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
