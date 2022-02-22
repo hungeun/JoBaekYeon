@@ -1,0 +1,320 @@
+html, css selector
+
+web
+- 정적 페이지 : html
+	- 웹페이지 분석: url
+	- request(url) => response(data) : data(html(str))
+	- data(html(str)) => parsing(bs(css-selector)) =>text
+
+html
+- 웹페이지에서 레이아웃, 문자열, 속성값등등을 나타내는 문법
+
+Html 구성요소
+- Document : 한페이지 전체의 html code
+- Element : 하나의 레이아웃을 나타내는 단위
+- Tag : 레이아웃의 종류를 나타내는 단위, 주로 시작태그와 끝태그가 있다.
+- Attribute : 속성값, 시작태그에 포함, 태그에서 특정 기능을 하는 값
+- Text: 시작태그와 끝태그 사이에 있는 문자열
+
+- html code에서 text를 가져오기위해 엘리먼트를 선택해야 함
+	- 엘리먼트를 선택하는 문법이 css-selecter
+	- css-selecter를 사용할 수 있게 해주는 패키지가 bs
+
+css selecter
+- html element를 선택하기 위한 문법
+
+element를 선택하기 위한 방법들
+- tag
+   - css-selecter : span => span 항목 선택
+- id 
+   - 한 페이지에 같은 id값 사용하지 않음
+   - css-selecter : #d2 => id 값이 #d2인 항목 선택
+- class
+   - 하나의 태그에 여러개의 값을 사용할 수 있음
+   - 한 페이지에서 동일값을 여러번 사용 가능
+   - css-selecter : .txt => class가 txt인 항목 모두 선택
+- attr
+   - css-selecter : [value='no2'] => value가 no2인 항목 선택
+
+계층적으로 엘리먼트 선택
+
+- > : 한단계 하위 엘리먼트 선택
+   - css-selecter : .wrap > p => class가 wrap인 항목 중 p 항목 선택
+   - css-selecter : .wrap > div > p => class가 wrap인 항목 중 div 선택, div 항목 중 p 선택
+- 공백 : 하위 엘리먼트 모두 선택
+   - css-selecter : .wrap p => class가 wrap인 항목 중 p 항목 모두 선택
+- span 태그 이면서 no1 클래스를 가진 엘리먼트 선택
+   - css-selector : span.no1 : sapn 태그 중 class가 no1인 항목 선택
+- nth-child(n): n번째 엘리먼트 선택
+   - css-selecter : .wrap > p:nth-child(2) => calss가 wrap인 항목 중 2번째 항목 선택
+   - css-selecter : .wrap > p:nth-child(2), .wrap > p:nth-child(3) => class가 wrap인 항목 중 2번쨰 항목과, 3번째 항목 선택
+
+
+정적 페이지 웹 크롤링(네이버 연관검색어 데이터 수집) 
+
+import requests 
+
+import pandas as pd 
+
+from bs4 import BeautifulSoup 
+
+절차 
+
+웹서비스 분석: URL 
+
+request(url) => response(data) : data(html) 
+
+data(html) => bs_obj.select(css-selecter) => text 
+
+웹 크롤링 
+
+def ralational_keyword(keyword): 
+
+    # 1. 웹서비스 분석: URL 
+
+    url = f'https://search.naver.com/search.naver?query={keyword}' 
+
+ 
+
+    # 2. request(url) => response(data) : data(html) 
+
+    response = requests.get(url) 
+
+ 
+
+   # 3. data(html) => bs_obj.select(css-selecter) => text 
+
+    dom = BeautifulSoup(response.text, 'html.parser') 
+
+    # li element 10개 선택 
+
+    elements = dom.select(".lst_related_srch > li") 
+
+ 
+
+    # 반복문으로 element에서 text 추출 
+
+    return [element.select_one('.tit').text for element in elements] 
+
+ 
+
+정적 페이지 웹 크롤링(행정 안전부 보도자료 데이터 수집) 
+
+Post 방식 
+
+여러개의 페이지 데이터 수집 
+
+웹 크롤링 
+
+def mois(page): 
+
+    # 1. 웹서비스 분석 : url 
+
+    url = 'https://mois.go.kr/frt/bbs/type010/  
+
+commonSelectBoardList.do?bbsId=BBSMSTR_000000000008' 
+
+    params = { 
+
+        'nttId': '0', 
+
+        'bbsTyCode': 'BBST03', 
+
+        'bbsAttrbCode': 'BBSA03', 
+
+        'authFlag': 'Y', 
+
+        'pageIndex': page, 
+
+        'cal_url': '/sym/cal/EgovNormalCalPopup.do', 
+
+        'searchCnd': '0' 
+
+    } 
+
+     
+
+    # 2. request(url, params) => response : html 
+
+    response = requests.post(url, params) 
+
+ 
+
+    # 3. html(str) => bs_obj => bs_obj.select(css-selecter) => text => DataFrame 
+
+    dom = BeautifulSoup(response.text, 'html.parser') 
+
+    # 게시글 리스트 데이터 선택 : 10개 
+
+    elements = dom.select("#print_area > div.table_wrap.type_01  
+
+> form > table > tbody > tr") 
+
+    # 각 데이터에서 필요한 정보 수집 
+
+    datas = [] 
+
+    for element in elements: 
+
+        datas.append({ 
+
+            'no' : element.select('td')[0].text.strip(), 
+
+            'title' : element.select('td')[1].text.strip(), 
+
+            'writer' : element.select('td')[3].text.strip(), 
+
+            'date' : element.select('td')[4].text.strip(), 
+
+            'pv' : element.select('td')[5].text.strip(), 
+
+            'link' : 'https://mois.go.kr' + element.select('td')[1].select_one('a').get('href') 
+
+        }) 
+
+     
+
+    return pd.DataFrame(datas) 
+
+ 
+
+# 5. 여러 페이지 데이터 수집 
+
+dfs = [] 
+
+for page in range(1, 4): 
+
+    print(page, end=' ') 
+
+    dfs.append(mois(page)) 
+
+result_df = pd.concat(dfs, ignore_index=True) 
+
+ 
+
+정적 페이지 웹 크롤링(gmarket 베스트 200상품 데이터 수집) 
+
+Images 다운로드(이미지 url을 통해 다운로드) 
+
+!mkdir datas 
+
+import os 
+
+  
+
+# datas 디렉토리가 없으면 datas 디렉토리를 만든다. 
+
+if not os.path.exists('datas'): 
+
+    os.makedirs('datas') 
+
+ 
+
+# df의 0번째 img 다운로드 
+
+img = df.loc[0, 'img'] 
+
+response = requests.get(img) 
+
+with open('datas/test.png','wb') as file: 
+
+    file.write(response.content) 
+
+ 
+
+# df의 img를 다운로드 하고 파일 명 000으로 지정하기 
+
+from PIL import Image as pil 
+
+pil.open('datas/test.png') 
+
+ 
+
+for idx, data in df[:15].iterrows(): 
+
+    filename = '0' * (3 - len(str(idx))) + str(idx) 
+
+    print(idx, end =' ') 
+
+    response = requests.get(data['img']) 
+
+    with open(f'datas/{filename}.png', 'wb') as file: 
+
+        file.write(response.content) 
+
+ 
+
+pil.open('datas/003.png') 
+
+ 
+
+ 
+
+정적 페이지 웹 크롤링(selenium) 
+
+import pandas as pd 
+
+from selenium import webdriver 
+
+selenium 을 이용한 크롤링 
+
+동적페이지, 정적페이지, API의 방법으로 데이터를 수집할수 없을때 사용 
+
+파이썬 코드로 컨트롤 할수 있는 자동화된 브라우져를 띄워서 크롤링할 페이지로 이동한 후에 브라우져에 있는 정보를 수집 
+
+웹서비스 테스트 자동화를 목적으로 만들어진 패키지, 다양한 언어로 사용 가능, 다양한 브라우져를 지원 
+
+동적페이지(json, api) > 정적페이지(html) >>> selenium(browser) 
+
+설정 : 크롬브라우져 설치, 크롬드라이버 다운로드, seleniumn 설치 
+
+패키지 인스톨 : !pip install selenium 
+
+크롬 드라이버 다운로드 : https://chromedriver.chromium.org/downloads 
+
+압축해제 
+
+현재 디렉토리로 파일 이동 
+
+셀레니움 
+
+	# 브라우져 열기 
+
+driver = webdriver.Chrome() 
+
+# 페이지 이동 
+
+driver.get("https://daum.net") 
+
+# 브라우져 사이즈 조절 
+
+driver.set_window_size(900, 1000) 
+
+# 브라우져 종료 : 메모리 100m 절약 
+
+	driver.quit() 
+
+데이터 수집하기 
+
+select : find_elements_by_css_selector 
+
+select_one : find_element_by_css_selector 
+
+하나의 element에서 필요한 데이터 수집 
+
+bs : .get("href") 
+
+selenium : .get_attribute("href") 
+
+창에 검색어 입력 
+
+driver.find_element_by_css_selector("#q").send_keys("kt") 
+
+버튼 클릭 
+
+driver.find_element_by_css_selector(".ico_pctop.btn_search").click() 
+
+ 
+
+
+
