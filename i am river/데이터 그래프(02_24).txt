@@ -1,0 +1,60 @@
+# 히스토그램( 데이터 하나에 값 )
+plt.subplot(2,2,1)
+plt.hist(titanic['Age'], bins=8, edgecolor='gray')
+plt.title('bins = 8')
+
+# 밀도함수( 데이터 하나의 시리즈 )
+age = pd.Series(age)
+age.plot(kind='kde')
+
+# 박스플롯( 데이터 하나 )
+box1 = plt.boxplot(titanic['Age'])
+plt.show()
+
+# 바차트( 범주형 변수 )
+cnt = titanic['Pclass'].value_counts()
+plt.bar(cnt.index, cnt.values, color=['g','r','b'])
+plt.show()
+
+# 파이차트( 범주형 변수 )
+cnt = gender.value_counts()
+
+plt.pie(cnt.values, labels = cnt.index, autopct = '%.2f%%', 
+        startangle=90, counterclock=False, 
+        explode = [0.05, 0.05], shadow=True)
+plt.show()
+
+# 히스토그램( 하나 or 두개 seaborn 사용)
+sns.histplot(data = titanic, x='Age', bins = 16, hue = 'Survived')
+plt.show()
+hue 없어도 가능
+
+# 밀도함수( densityplot sns 사용)
+sns.kdeplot(data = titanic, x = 'Age')
+plt.show()
+
+# distplot(histogram + density plot)
+sns.distplot(titanic['Age'], bins = 16, hist_kws = dict(edgecolor='grey'))
+plt.show()
+
+# jointplot(scatter + histogram(혹은 density plot)) 숫자-숫자
+sns.jointplot(x='Petal.Length', y='Petal.Width', data = iris, hue = 'Species')
+plt.show()
+
+# countplot(집계 + bar plot)
+sns.countplot(x="Embarked", data=titanic, hue = 'Survived')
+plt.show()
+hue가 없으면 x값 count 값
+
+# 산점도(숫자-숫자)
+plt.scatter(air['Temp'], air['Ozone'])
+plt.show()
+
+# 상관 분석
+air.corr()
+
+# 상관 계수, pvalue
+temp_ds = ds.loc[ds['dataset']==d]
+    corr = spst.pearsonr(temp_ds['x'], temp_ds['y'])
+    print(i)
+    print('상관계수 : {:.4f},  P-value : {:.4f}'.format(corr[0], corr[1]))
