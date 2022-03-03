@@ -1,0 +1,34 @@
+"Linear Regression"
+- 𝒚 = 𝒘𝟎 + 𝒘𝟏𝒙𝟏
+w1: 가중치(기울기)
+w0: 편향(절편)
+- model.coef_   # 가중치
+- model.intercept_   # 편향
+- Regression만 가능
+
+
+
+"KNN(K-Nearest Neighbor)"
+- 유클리드 거리(대각선 거리)
+- 맨하튼 거리(실제 선 거리)
+- KNN 모델 성능을 높이기 위해서는 정규화(Nomalization) 작업 진행
+=> 같은 범위의 데이터를 가져야 좋은 성능을 보임
+- Regression, Classifier 사용 가능
+
+
+
+"Decision Tree"
+- 분석 과정을 실제로 눈으로 확인할 수 있음: 화이트박스 모델
+- 스무고개 알고리즘과 매우 비슷: 의미있는 질문 먼저 하는 것이 매우 중요
+- 대규모의 데이터 셋에서도 비교적 빠르게 연산 가능
+- 시각화: plot_tree
+- 변수 중요도 시각화: plt.barh(list(x), model.feature_importances_)
+- Classifier지만 mse값을 줄이는 방법으로 가지를 치면 Regression도 가능 
+
+
+
+"Regression의 성능 평가"
+- mean_absolute_error, r2_score
+
+"Classifier의 성능 평가"
+- confusion_matrix, classification_report
